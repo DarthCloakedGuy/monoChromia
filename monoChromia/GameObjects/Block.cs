@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace monoChromia.GameObjects
 {
-    public class Block
+    public class Block : GameObject
     {
 
     }
-
-
 }

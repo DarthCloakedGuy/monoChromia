@@ -10,99 +10,100 @@ using System.Windows.Forms;
 
 namespace monoChromia
 {
-    public class Sprite
+    //NOTE: Instead of using a custom method, "die," impliment the IDisposible interface.
+    public class Sprite : IDisposable
     {
-        public Point loc;
-        public Image frame;
-        public int layer;
+        public Point Location { get; set; }
+        public Image Frame {get; set;}
+        public int Layer { get; set; }
 
         public Sprite(int _x, int _y)
         {
-            loc = new Point(_x, _y);
-            frame = Image.FromFile("derpghost.png");
-            layer = 4;
+            Location = new Point(_x, _y);
+            Frame = Image.FromFile(@".\ImageResources\derpghost.png");
+            Layer = 4;
         }
 
         public Sprite(int _x, int _y, int _l)
         {
-            loc = new Point(_x, _y);
-            frame = Image.FromFile("derpghost.png");
-            layer = _l;
+            Location = new Point(_x, _y);
+            Frame = Image.FromFile(@".\ImageResources\derpghost.png");
+            Layer = _l;
         }
 
         public Sprite(Point _loc)
         {
-            loc = _loc;
-            frame = Image.FromFile("derpghost.png");
-            layer = 4;
+            Location = _loc;
+            Frame = Image.FromFile(@".\ImageResources\derpghost.png");
+            Layer = 4;
         }
 
         public Sprite(Point _loc, int _l)
         {
-            loc = _loc;
-            frame = Image.FromFile("derpghost.png");
-            layer = _l;
+            Location = _loc;
+            Frame = Image.FromFile(@".\ImageResources\derpghost.png");
+            Layer = _l;
         }
 
         public Sprite(int _x, int _y, String _f)
         {
-            loc = new Point(_x, _y);
-            frame = Image.FromFile(_f);
-            layer = 4;
+            Location = new Point(_x, _y);
+            Frame = Image.FromFile(_f);
+            Layer = 4;
         }
 
         public Sprite(int _x, int _y, String _f, int _l)
         {
-            loc = new Point(_x, _y);
-            frame = Image.FromFile(_f);
-            layer = _l;
+            Location = new Point(_x, _y);
+            Frame = Image.FromFile(_f);
+            Layer = _l;
         }
 
         public Sprite(Point _loc, String _f)
         {
-            loc = _loc;
-            frame = Image.FromFile(_f);
-            layer = 4;
+            Location = _loc;
+            Frame = Image.FromFile(_f);
+            Layer = 4;
         }
 
         public Sprite(Point _loc, String _f, int _l)
         {
-            loc = _loc;
-            frame = Image.FromFile(_f);
-            layer = _l;
+            Location = _loc;
+            Frame = Image.FromFile(_f);
+            Layer = _l;
         }
 
         public Sprite(int _x, int _y, Image _f)
         {
-            loc = new Point(_x, _y);
-            frame = _f;
-            layer = 4;
+            Location = new Point(_x, _y);
+            Frame = _f;
+            Layer = 4;
         }
 
         public Sprite(int _x, int _y, Image _f, int _l)
         {
-            loc = new Point(_x, _y);
-            frame = _f;
-            layer = _l;
+            Location = new Point(_x, _y);
+            Frame = _f;
+            Layer = _l;
         }
 
         public Sprite(Point _loc, Image _f)
         {
-            loc = _loc;
-            frame = _f;
-            layer = 4;
+            Location = _loc;
+            Frame = _f;
+            Layer = 4;
         }
 
         public Sprite(Point _loc, Image _f, int _l)
         {
-            loc = _loc;
-            frame = _f;
-            layer = _l;
+            Location = _loc;
+            Frame = _f;
+            Layer = _l;
         }
 
-        public void die()
+        public void Dispose()
         {
-            frame.Dispose();
+            Frame.Dispose();
         }
     }
 }

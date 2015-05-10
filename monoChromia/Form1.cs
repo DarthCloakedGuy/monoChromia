@@ -1,4 +1,5 @@
-﻿using System;
+﻿using monoChromia.GameObjects;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,31 +13,25 @@ namespace monoChromia
 {
     public partial class Form1 : Form
     {
-        Globals global;
-        CursorDisp mousePos;
+        //TODO: I renamed a number of members and methods to meet the .NET naming style guidlines.
 
-        GraphicsEngine canvas;
-        GameEngine game;
-
-        int lastTick;
-
-        //Font systemHeader;
-        //Font planetHeader;
+        private Globals GlobalInstance;
+        private GraphicsEngine RawGraphicsEngine;
+        private GameEngine Game;
+        private GameCursor SwordCursor;
+        private int LastTick;
 
         public Form1()
         {
-            lastTick = Environment.TickCount;
-
+            LastTick = Environment.TickCount;
             InitializeComponent();
-            global = new Globals();
-            mousePos = new CursorDisp();
-            canvas = new GraphicsEngine(gameWindow);
-            game = new GameEngine(canvas);
-
-            //systemHeader = new Font("Consolas", 14);
-            //planetHeader = new Font("Consolas", 10);
-
-            canvas.initializeBitmap();
+            GlobalInstance = new Globals();
+            Game = new GameEngine();
+            SwordCursor = new GameCursor();
+            Game.ObjectsInPlay.Add(SwordCursor);
+            for (int i = 0; i < 50; i++)
+                Game.ObjectsInPlay.Add(new WiggleMonster());
+            RawGraphicsEngine = new GraphicsEngine();
         }
 
         private void Form1_MouseHandle(object sender, MouseEventArgs e)
@@ -46,13 +41,11 @@ namespace monoChromia
 
         private void gameWindow_MouseEnter(object sender, System.EventArgs e)
         {
-            // Hide the cursor when the mouse pointer enters the button.
             Cursor.Hide();
         }
 
         private void gameWindow_MouseLeave(object sender, System.EventArgs e)
         {
-            // Show the cursor when the mouse pointer leaves the button.
             Cursor.Show();
         }
 
@@ -100,12 +93,12 @@ namespace monoChromia
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            mousePos.Active = true;
+            SwordCursor.StateTransition(1);
         }
 
         private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            mousePos.Active = false;
+            SwordCursor.StateTransition(0);
         }
 
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
@@ -113,13 +106,14 @@ namespace monoChromia
 
         }
 
-
         private void timer1_Tick(object sender, EventArgs e)
         {
-            bool LMBisDown = mousePos.Active;
-            canvas.frameUpdate(LMBisDown);
-
-            game.tick();
+            Game.UpdateWorld();
+            //NOTE: The cursor is a special game object for now.
+            SwordCursor.UpdateLocation(gameWindow.PointToClient(Cursor.Position));
+            gameWindow.BackgroundImage = RawGraphicsEngine.FrameUpdate(
+                Game.GetVisibleObjects().
+                Select(x => x.TransformedSprite()).ToList());
         }
 
         private void button1_Click(object sender, EventArgs e)

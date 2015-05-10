@@ -13,27 +13,30 @@ namespace monoChromia
     {
         public static List<GameObject> allObjects = new List<GameObject>();
 
-        double x;
-        double y;
-        int layer;
+        public double X { get; set; }
+        public double Y { get; set; }
+        public Sprite ShownSprite { get; set; }
 
-        Image defaultImage;
+        //TODO: Based on game object state, choose which sprite will render next.
+
+        public GameObject(int layer, Point p) { }
 
         public GameObject()
         {
-            x = Globals.randint.Next(800);
-            y = Globals.randint.Next(600);
-            defaultImage = Image.FromFile(@".\\ImageResources\\derpghost.png");
-            layer = 4;
-
+            X = Globals.randint.Next(800);
+            Y = Globals.randint.Next(600);
+            ShownSprite = new Sprite((int)X, (int)Y);
             allObjects.Add(this);
         }
 
-        public Sprite render()
+        public virtual void StateTransition(int state) { }
+
+        public Sprite TransformedSprite()
         {
-            Point loc = new Point((int)x, (int)y);
-            Sprite spr = new Sprite(loc, defaultImage, layer);
-            return spr;
+            ShownSprite.Location = new Point((int)X, (int)Y); 
+            return ShownSprite;
         }
+
+        public virtual void DoNext() { }
     }
 }
