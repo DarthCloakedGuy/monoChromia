@@ -1,0 +1,9 @@
+c:\users\mitchell\documents\visual studio 2013\Projects\monoChromia\monoChromia\bin\Debug\monoChromia.exe.config
+c:\users\mitchell\documents\visual studio 2013\Projects\monoChromia\monoChromia\obj\Debug\monoChromia.csprojResolveAssemblyReference.cache
+c:\users\mitchell\documents\visual studio 2013\Projects\monoChromia\monoChromia\obj\Debug\monoChromia.Form1.resources
+c:\users\mitchell\documents\visual studio 2013\Projects\monoChromia\monoChromia\obj\Debug\monoChromia.Properties.Resources.resources
+c:\users\mitchell\documents\visual studio 2013\Projects\monoChromia\monoChromia\obj\Debug\monoChromia.csproj.GenerateResource.Cache
+c:\users\mitchell\documents\visual studio 2013\Projects\monoChromia\monoChromia\bin\Debug\monoChromia.exe
+c:\users\mitchell\documents\visual studio 2013\Projects\monoChromia\monoChromia\bin\Debug\monoChromia.pdb
+c:\users\mitchell\documents\visual studio 2013\Projects\monoChromia\monoChromia\obj\Debug\monoChromia.exe
+c:\users\mitchell\documents\visual studio 2013\Projects\monoChromia\monoChromia\obj\Debug\monoChromia.pdb
